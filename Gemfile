@@ -21,6 +21,7 @@ end
 group :development do
   gem 'rails3-generators' # for factory_girl_rails and simple_form
   gem 'nifty-generators', :git => 'git://github.com/PaBLoX-CL/nifty-generators.git' # rails 3.1 pull request 9/2/2011
+  gem 'heroku'
 end
 
 group :test, :development do

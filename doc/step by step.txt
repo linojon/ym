@@ -52,6 +52,7 @@ Then edit spec/spec_helper.rb and move everything into the prefork section.
 edit spec/spec_helper.rb 
 	move everything into the prefork section.
 	Put this in the prefork section:
+		require 'capybara/rspec'  
 		require 'database_cleaner'
 		DatabaseCleaner.strategy = :truncation
   Put this in the each_run section:
@@ -76,6 +77,7 @@ config/environments/development.rb, near the end before the YourAppName::Applica
 
 $ guard init
 $ guard init bundler
+$ guard init rspec
 
 .rvmrc
 	rvm use 1.9.2
@@ -100,8 +102,36 @@ views/pages/home.html.haml
 	%p
 	  Welcome!
 
-	
 
+## ---------------
+## git
+
+$ git init .
+$ git add .
+$ git commit -a -m "first commit"
+create repos on github
+$ git remote add origin git@github.com:linoj/ym.git
+$ git push -u origin master
+
+## ---------------
+## page spec (capybara)
+	http://asciicasts.com/episodes/275-how-i-test
+	$ mkdir spec/support spec/models spec/routing
+	
+	$ guard
+	
+	$ rails g integration_test page
+	=> spec/requests/pages_spec.rb
+	
+	
+## ---------------
+##
+## ---------------
+##
+## ---------------
+##
+## ---------------
+##
 ## ---------------
 ##
 ## ---------------
@@ -111,9 +141,21 @@ views/pages/home.html.haml
 ## ---------------
 ##
 -----
-git
+	
+compass/blueprint
 heroku
 
+client_side_validations
+http://bcardarella.com/post/4211204716/client-side-validations-3-0
+
+pagination
+https://github.com/amatsuda/kaminari
+
+meta_where
+
+hebrew cal gem
+
+js tables
 
 
 
