@@ -1,0 +1,119 @@
+
+$ rails new ym -T
+$ cd ym
+
+initial Gemfile
+	gem 'jquery-rails'
+	gem 'haml-rails'
+	gem 'simple_form'
+	
+	group :development do
+	  gem 'rails3-generators' # for factory_girl_rails and simple_form
+	  gem 'nifty-generators', :git => 'git://github.com/PaBLoX-CL/nifty-generators.git' # rails 3.1 pull request 9/2/2011
+	end
+	
+	group :test, :development do
+	  gem 'ruby-debug19', :require => 'ruby-debug'
+	  gem "rspec-rails"
+	  gem 'rspec-instafail'
+	  gem 'rb-fsevent'
+	  gem 'growl'
+	  gem 'pry'
+	  gem 'factory_girl_rails'
+	  gem 'database_cleaner'
+	  gem "factory_girl_rails"
+	  gem "capybara"
+	  gem 'guard-spork'
+	  gem "guard-bundler"
+	  gem "guard-rspec"
+	  gem "guard-migrate"
+	end
+	
+config/application.rb
+	config.autoload_paths += %W(#{config.root}/lib)
+	config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+	config.generators do |g|
+	  g.test_framework :rspec, :fixture => true
+	  g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+	  g.form_builder :simple_form
+	  g.template_engine :haml
+	end
+	
+$ bundle install
+$ rails g rspec:install
+$ rails g simple_form:install
+$ rails g nifty:layout --haml --scss
+$ rm app/views/layouts/application.html.erb
+
+$ spork --bootstrap
+Then edit spec/spec_helper.rb and move everything into the prefork section.
+
+edit spec/spec_helper.rb 
+	move everything into the prefork section.
+	Put this in the prefork section:
+		require 'database_cleaner'
+		DatabaseCleaner.strategy = :truncation
+  Put this in the each_run section:
+		DatabaseCleaner.clean
+	Comment out the config.fixture_path line
+
+$ echo '--colour
+--drb
+--require rspec/instafail
+--format RSpec::Instafail' > .rspec
+
+config/environments/development.rb, near the end before the YourAppName::Application.configure block, put this:
+	silence_warnings do
+	  begin
+	    require 'pry'
+	    IRB = Pry
+	  rescue LoadError
+	  end
+	end
+
+	Now rails c will startup using pry. You can also add bindings.pry anyplace and your app will stop there with a pry prompt until you exit it.
+
+$ guard init
+$ guard init bundler
+
+.rvmrc
+	rvm use 1.9.2
+	
+## ---------------
+## pages
+$ rails g nifty:scaffold Pages show --skip-model --haml --rspec
+
+routes.rb
+	match 'about' => 'pages#about'
+  root :to => 'pages#home'
+  
+pages_controller.rb
+	def home
+    render
+  end
+  def about
+    render
+
+views/pages/home.html.haml
+	- title "Home"
+	%p
+	  Welcome!
+
+	
+
+## ---------------
+##
+## ---------------
+##
+## ---------------
+##
+## ---------------
+##
+-----
+git
+heroku
+
+
+
+
