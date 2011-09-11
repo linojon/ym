@@ -147,12 +147,34 @@ Password:
 $ heroku create
 $ git push heroku master
 $ heroku rake db:migrate
+$ heroku apps:rename yminder
 $ heroku open
-http://high-summer-693.heroku.com
+http://yminder.heroku.com
 
 
 ## ---------------
-##
+## compass
+
+http://asciicasts.com/episodes/268-sass-basics
+http://metaskills.net/2011/07/29/use-compass-sass-framework-files-with-the-rails-3.1.0.rc5-asset-pipeline/
+
+rename application.css.scss
+remove *= require_tree . 
+add
+  @import "compass"
+  @import "blueprint"
+	@import 'layout.css.scss'
+	etc
+	
+Gemfile
+	group :assets
+		gem 'compass', '0.12.alpha.0'
+
+config/initializers/sass.rb
+	Rails.configuration.sass.tap do |config|
+	  config.load_paths << "#{Gem.loaded_specs['compass'].full_gem_path}/frameworks/compass/stylesheets"
+	end
+	
 ## ---------------
 ##
 ## ---------------

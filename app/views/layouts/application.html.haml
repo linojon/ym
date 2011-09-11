@@ -12,6 +12,9 @@
     = yield(:head)
 
   %body
+    #header
+      %h1 YahrzeitMinder
+      %h2 www.yminder.com
     #container
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
@@ -20,3 +23,5 @@
         %h1= yield(:title)
 
       = yield
+    #footer
+      footer
