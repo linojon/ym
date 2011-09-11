@@ -129,10 +129,15 @@ $ git push -u origin master
 Gemfile
 	gem 'heroku'
 	group :production do
+		gem 'therubyracer-heroku', '0.8.1.pre3'
 	  gem 'pg'
 	end
 	
+environments/production.rb
+	config.serve_static_assets = true
 	
+$ rake assets:precompile
+$ git commit -a -m	
 $ heroku keys:add
 Enter your Heroku credentials.
 Email: 
