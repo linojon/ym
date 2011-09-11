@@ -40,3 +40,8 @@ group :test, :development do
   gem "guard-rspec"
   gem "guard-migrate"
 end
+
+group :production do
+  gem 'pg'
+end
+
