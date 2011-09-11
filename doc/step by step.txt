@@ -175,6 +175,12 @@ config/initializers/sass.rb
 	  config.load_paths << "#{Gem.loaded_specs['compass'].full_gem_path}/frameworks/compass/stylesheets"
 	end
 	
+BEFORE DEPLOY (EVERY TIME)
+	$ rake assets:precompile
+	then
+	$ git commit...
+	$ git push heroku 
+	
 ## ---------------
 ##
 ## ---------------
