@@ -125,7 +125,25 @@ $ git push -u origin master
 	
 	
 ## ---------------
-##
+## heroku
+Gemfile
+	gem 'heroku'
+	group :production do
+	  gem 'pg'
+	end
+	
+	
+$ heroku keys:add
+Enter your Heroku credentials.
+Email: 
+Password: 
+$ heroku create
+$ git push heroku master
+$ heroku rake db:migrate
+$ heroku open
+http://high-summer-693.heroku.com
+
+
 ## ---------------
 ##
 ## ---------------
