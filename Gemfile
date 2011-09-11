@@ -41,8 +41,8 @@ group :test, :development do
   gem "guard-migrate"
 end
 
-group :production do
+#group :production do
   gem 'therubyracer-heroku', '0.8.1.pre3'
   gem 'pg'
-end
+#end
 
