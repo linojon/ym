@@ -45,6 +45,8 @@ $ rails g rspec:install
 $ rails g simple_form:install
 $ rails g nifty:layout --haml --scss
 $ rm app/views/layouts/application.html.erb
+application.html.haml
+	= javascript_include_tag "application"
 
 $ spork --bootstrap
 Then edit spec/spec_helper.rb and move everything into the prefork section.
