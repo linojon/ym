@@ -1,5 +1,7 @@
 Ym::Application.routes.draw do
   
+  resources :people
+
   match 'about' => 'pages#about'
 
   # The priority is based upon order of creation:

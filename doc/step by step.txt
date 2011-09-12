@@ -121,6 +121,7 @@ $ git push -u origin master
 	$ mkdir spec/support spec/models spec/routing
 	
 	$ guard
+	$ spork
 	
 	$ rails g integration_test page
 	=> spec/requests/pages_spec.rb
@@ -168,7 +169,7 @@ add
 	
 Gemfile
 	group :assets
-		gem 'compass', '0.12.alpha.0'
+		gem 'compass', '>= 0.12.alpha.0'
 
 config/initializers/sass.rb
 	Rails.configuration.sass.tap do |config|
@@ -180,35 +181,82 @@ BEFORE DEPLOY (EVERY TIME)
 	then
 	$ git commit...
 	$ git push heroku 
+
+
+## ---------------
+##
+	
+	$ rails g scaffold person last_name:string first_name:string middle_name:string maiden:string title:string gender:string birthdate:date deathdate:date
+	$ rake db:migrate
+	
+	
+	## ---------------
+	##
+	## ---------------
+	##
+	## ---------------
+	##
+	## ---------------
+	##
+	-----
+
+	compass/blueprint
+	heroku
+
+	client_side_validations
+	http://bcardarella.com/post/4211204716/client-side-validations-3-0
+
+	pagination
+	https://github.com/amatsuda/kaminari
+
+	meta_where
+
+	hebrew cal gem
+
+	js tables
+
+
+
 	
 ## ---------------
-##
 ## ---------------
-##
 ## ---------------
-##
-## ---------------
-##
-## ---------------
-##
-## ---------------
-##
------
+## devise
+
+https://github.com/plataformatec/devise
+http://www.tonyamoyal.com/2010/07/28/rails-authentication-with-devise-and-cancan-customizing-devise-controllers/
+http://www.tonyamoyal.com/2010/09/29/rails-authentication-with-devise-and-cancan-part-2-restful-resources-for-administrators/
+http://asciicasts.com/episodes/209-introducing-devise
+http://asciicasts.com/episodes/210-customizing-devise
+https://github.com/plataformatec/devise/wiki/OmniAuth%3a-Overview
+https://github.com/plataformatec/devise/wiki
+https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
+
+
+Gemfile
+	gem 'devise'
 	
-compass/blueprint
-heroku
+$ rails g devise:install
+$ rails g devise User
+$ rails g devise:views
 
-client_side_validations
-http://bcardarella.com/post/4211204716/client-side-validations-3-0
+models/user.rb
+	class User < ActiveRecord::Base
+	  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :trackable, :validatable
+	end
 
-pagination
-https://github.com/amatsuda/kaminari
+migration
+	create_table :users do |t|
+	  t.database_authenticatable
+	  t.confirmable
+	  t.recoverable
+	  t.rememberable
+	  t.trackable
+	  t.timestamps
+	end
 
-meta_where
-
-hebrew cal gem
-
-js tables
+routes.rb
+	devise_for :users
 
 
 

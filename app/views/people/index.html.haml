@@ -1,0 +1,35 @@
+%h1 Listing people
+
+%table
+  %tr
+    %th Last name
+    %th First name
+    %th Middle name
+    %th Maiden
+    %th Prefix
+    %th Suffix
+    %th Gender
+    %th Birthdate
+    %th Deathdate
+    %th
+    %th
+    %th
+
+  - @people.each do |person|
+    %tr
+      %td= person.last_name
+      %td= person.first_name
+      %td= person.middle_name
+      %td= person.maiden
+      %td= person.prefix
+      %td= person.suffix
+      %td= person.gender
+      %td= person.birthdate
+      %td= person.deathdate
+      %td= link_to 'Show', person
+      %td= link_to 'Edit', edit_person_path(person)
+      %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Person', new_person_path

@@ -1,0 +1,21 @@
+= simple_form_for @person do |form|
+
+  -if @person.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@person.errors.count, "error")} prohibited this #{Person.name.titleize} from being saved:"
+      %ul
+        - @person.errors.full_messages.each do |msg|
+          %li= msg  
+
+  = form.input :last_name, :label => 'Last Name'
+  = form.input :first_name, :label => 'First Name'
+  = form.input :middle_name, :label => 'Middle Name'
+  = form.input :maiden, :label => 'Maiden'
+  = form.input :prefix, :label => 'Prefix'
+  = form.input :suffix, :label => 'Suffix'
+  = form.input :gender, :label => 'Gender'
+  = form.input :birthdate, :label => 'Birthdate'
+  = form.input :deathdate, :label => 'Deathdate'
+
+  .actions
+    = form.button :submit

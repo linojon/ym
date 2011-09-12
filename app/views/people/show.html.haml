@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Last name:
+  = @person.last_name
+%p
+  %b First name:
+  = @person.first_name
+%p
+  %b Middle name:
+  = @person.middle_name
+%p
+  %b Maiden:
+  = @person.maiden
+%p
+  %b Prefix:
+  = @person.prefix
+%p
+  %b Suffix:
+  = @person.suffix
+%p
+  %b Gender:
+  = @person.gender
+%p
+  %b Birthdate:
+  = @person.birthdate
+%p
+  %b Deathdate:
+  = @person.deathdate
+
+= link_to 'Edit', edit_person_path(@person)
+\|
+= link_to 'Back', people_path
