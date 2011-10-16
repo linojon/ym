@@ -1,6 +1,10 @@
 - title "Home"
 
 %p
-  Welcome!
+  Welcome to YahrzeitMinder.com
+  %br
+  = link_to_function "test js", '$(this).html("js works")'
 
-= link_to_function "test js", '$(this).html("js works")'
+%p
+  = link_to 'List of Yahrzeits', people_path
+

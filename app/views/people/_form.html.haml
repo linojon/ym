@@ -1,10 +1,10 @@
-= simple_form_for @person do |form|
+= simple_form_for person do |form|
 
-  -if @person.errors.any?
+  -if person.errors.any?
     #errorExplanation
-      %h2= "#{pluralize(@person.errors.count, "error")} prohibited this #{Person.name.titleize} from being saved:"
+      %h2= "#{pluralize(person.errors.count, "error")} prohibited this #{Person.name.titleize} from being saved:"
       %ul
-        - @person.errors.full_messages.each do |msg|
+        - person.errors.full_messages.each do |msg|
           %li= msg  
 
   = form.input :last_name, :label => 'Last Name'

@@ -1,3 +1,6 @@
+######################
+yahrzeitminder.com
+######################
 
 $ rails new ym -T
 $ cd ym
@@ -191,7 +194,30 @@ BEFORE DEPLOY (EVERY TIME)
 	
 	
 ## ---------------
-##
+## 10/15/2011
+
+rails 3.1.1
+use capybara for integration testing
+    followed railscast http://railscasts.com/episodes/257-request-specs-and-capybara
+    
+10/16/2011
+gem 'faker'
+
+webkit
+  install qtwebkit for osx 10.6 (download 211mb dmg file)
+  Gemfile
+    gem 'capybara-webkit'
+  note: to Allow the "webkit_server downloaded from the internet", i put a debugger line in :js => true spec to see it
+    
+respond_with
+    edited PeopleController 
+
+decent_exposure
+    gem 'decent_exposure'
+    change controller and view
+    also change the controller spec
+    
+
 ## ---------------
 ##
 ## ---------------

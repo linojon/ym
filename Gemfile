@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'simple_form'
+gem 'decent_exposure'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,17 +32,21 @@ group :test, :development do
   gem "rspec-rails"
   gem 'rspec-instafail'
   gem 'rb-fsevent'
-  gem 'growl'
-  gem 'pry'
-  gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem "factory_girl_rails"
-  gem "capybara"
+  gem 'capybara'
+  gem 'capybara-webkit'
+  
+  gem 'factory_girl_rails'
+  gem 'faker'
+  
   gem 'guard-spork'
   gem "guard-bundler"
   gem "guard-rspec"
   gem "guard-migrate"
   gem 'launchy' # provides save_and_open_page
+  
+  gem 'growl'
+  gem 'pry'
 end
 
 group :production do
