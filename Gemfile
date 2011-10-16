@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -41,6 +41,7 @@ group :test, :development do
   gem "guard-bundler"
   gem "guard-rspec"
   gem "guard-migrate"
+  gem 'launchy' # provides save_and_open_page
 end
 
 group :production do
