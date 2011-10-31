@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20110912014647) do
     t.string   "prefix"
     t.string   "suffix"
     t.string   "gender"
-    t.date     "birthdate"
-    t.date     "deathdate"
+    t.date     "birth_date"
+    t.date     "death_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -219,7 +219,26 @@ decent_exposure
     
 
 ## ---------------
-##
+## 10/30/2011
+
+client side validations
+    gem 'client_side_validations'
+    $ rails g client_side_validations:install
+    
+    In your app/assets/javascripts/application.js file add the following:
+    //= require rails.validations
+    
+    Uncomment code in initializes/client_side_validations.rb
+    
+    rspec examples with :js => true
+
+custom validations for proper name
+    https://github.com/bcardarella/client_side_validations/wiki/Custom-Validators
+    initializers/proper_name_validations.rb
+    config/locales/en.yml
+    app/assets/javascripts/rails.validations.custom.js
+    
+
 ## ---------------
 ##
 ## ---------------

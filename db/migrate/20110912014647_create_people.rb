@@ -8,8 +8,8 @@ class CreatePeople < ActiveRecord::Migration
       t.string :prefix
       t.string :suffix
       t.string :gender
-      t.date :birthdate
-      t.date :deathdate
+      t.date :birth_date
+      t.date :death_date
 
       t.timestamps
     end

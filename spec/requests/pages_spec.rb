@@ -11,11 +11,11 @@ describe "Pages", :type => :request do
       click_link "test js"
       page.should have_content("js works")
     end
-    # it "links to list of Yahrzeits" do
-    #   visit root_path
-    #   click_link "List of Yahrzeits"
-    #   current_path.should == people_path
-    # end
+    it "links to list of Yahrzeits" do
+      visit root_path
+      click_link "List of Yahrzeits"
+      current_path.should == people_path
+    end
   end
   describe "GET /about" do
     it "is on the About page" do

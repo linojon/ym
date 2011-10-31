@@ -23,6 +23,8 @@ class PeopleController < ApplicationController
   def create
     if person.save
       flash[:notice] = 'Person was successfully created.' 
+    else
+      flash[:error] = 'Person could not be saved. Please check your input.'
     end
     respond_with person
   end
@@ -30,6 +32,8 @@ class PeopleController < ApplicationController
   def update
     if person.update_attributes(params[:person])  
       flash[:notice] = 'Person was successfully updated.'
+    else
+      flash[:error] = 'Person could not be saved. Please check your input.'
     end  
     respond_with person 
   end  

@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'simple_form'
+gem 'client_side_validations'
 gem 'decent_exposure'
 
 # Gems used only for assets and not required

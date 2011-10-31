@@ -9,8 +9,8 @@
     %th Prefix
     %th Suffix
     %th Gender
-    %th Birthdate
-    %th Deathdate
+    %th Birth date
+    %th Death date
     %th
     %th
     %th
@@ -24,8 +24,8 @@
       %td= person.prefix
       %td= person.suffix
       %td= person.gender
-      %td= person.birthdate
-      %td= person.deathdate
+      %td= person.birth_date
+      %td= person.death_date
       %td= link_to 'Show', person
       %td= link_to 'Edit', edit_person_path(person)
       %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete

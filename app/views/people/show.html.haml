@@ -1,5 +1,3 @@
-%p#notice= notice
-
 %p
   %b Last name:
   = person.last_name
@@ -22,11 +20,11 @@
   %b Gender:
   = person.gender
 %p
-  %b Birthdate:
-  = person.birthdate
+  %b Birth date:
+  = person.birth_date
 %p
-  %b Deathdate:
-  = person.deathdate
+  %b Death date:
+  = person.death_date
 
 = link_to 'Edit', edit_person_path(person)
 \|
