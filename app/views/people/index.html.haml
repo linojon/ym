@@ -2,15 +2,16 @@
 
 %table
   %tr
-    %th Last name
-    %th First name
-    %th Middle name
-    %th Maiden
+    %th Last 
+    %th First 
+    %th Middle 
     %th Prefix
     %th Suffix
     %th Gender
     %th Birth date
     %th Death date
+    %th Yahrzeit
+    %th Next yahrzeit
     %th
     %th
     %th
@@ -20,12 +21,13 @@
       %td= person.last_name
       %td= person.first_name
       %td= person.middle_name
-      %td= person.maiden
       %td= person.prefix
       %td= person.suffix
       %td= person.gender
       %td= person.birth_date
       %td= person.death_date
+      %td= person.yahrzeit
+      %td= person.yahrzeit_date
       %td= link_to 'Show', person
       %td= link_to 'Edit', edit_person_path(person)
       %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete

@@ -105,6 +105,7 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
+    hebruby (2.0.4)
     heroku (2.9.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
@@ -253,6 +254,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   haml-rails
+  hebruby
   heroku
   jquery-rails
   launchy

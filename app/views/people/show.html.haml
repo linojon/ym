@@ -25,6 +25,12 @@
 %p
   %b Death date:
   = person.death_date
+%p
+  %b Yahrzeit:
+  = person.yahrzeit
+%p
+  %b Next yahrzeit:
+  = person.yahrzeit_date(Date.today)
 
 = link_to 'Edit', edit_person_path(person)
 \|
