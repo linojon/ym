@@ -47,7 +47,7 @@ class Person < ActiveRecord::Base
   
   def yahrzeit
     return unless death_date
-    Hebruby::HebrewDate.new(death_date)
+    Person.date_to_yahrzeit(death_date)
   end
   
   def yahrzeit_to_s(format = :day_month_year)
@@ -76,5 +76,11 @@ class Person < ActiveRecord::Base
       date = Date.jd(h_yahrzeit.jd)
     end
     date
+  end
+  
+  # REFACTOR: move to Hebcal class
+  def self.date_to_yahrzeit(dod)
+    # TODO: use Marlena rules
+    Hebruby::HebrewDate.new(dod)
   end
 end
