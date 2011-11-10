@@ -47,17 +47,28 @@ class Person < ActiveRecord::Base
   
   def yahrzeit
     return unless death_date
-    h = Hebruby::HebrewDate.new(death_date)
-    "#{h.day} #{h.month_name}"
+    Hebruby::HebrewDate.new(death_date)
   end
-  memoize :yahrzeit
+  
+  def yahrzeit_to_s(format = :day_month_year)
+    if h = yahrzeit
+      case format
+      when :day_month
+        "#{h.day} #{h.month_name}"
+      else
+        "#{h.day} #{h.month_name} #{h.year}"
+      end
+    else
+      ''
+    end
+  end
   
   # get next yahrzeit date on or after "from" date
-  def yahrzeit_date(from=Date.today)
+  def next_yahrzeit_date(from=Date.today)
     return unless death_date
     h_from = Hebruby::HebrewDate.new(from)
     h_death = Hebruby::HebrewDate.new(death_date)
-    # yarhzeit date from year
+    # yahrzeit date from year
     h_yahrzeit = Hebruby::HebrewDate.new(h_death.day, h_death.month, h_from.year)
     date = Date.jd(h_yahrzeit.jd)
     if date < from

@@ -1,0 +1,37 @@
+
+Scenario: Yahrzeit date from western date
+  When death date was <death>
+  Then yahrzeit day should be <yahrzeit>
+  
+  Examples:
+  | death      | yahrzeit    | comment                  |
+  | 8-Nov-2011 | 11-Cheshvan | regular date             |
+  | 5-Feb-2011 | 1-Adar I    | death in leap year       |
+  | 6-Mar-2011 | 30-Adar I   | death in leap year       |
+  | 7-Mar-2011 | 1-Adar II   | death in leap year       |
+  | 4-Apr-2011 | 29-Adar II  | death in leap year       |
+  |            | 1-Kislev    | one day Rosh Chodesh     |
+  |            | 29-Cheshvan | two/one day Rosh Chodesh |
+  |            | 1-Kislev    | two/two day Rosh Chodesh |
+  |            | 1-Tevet     | one day Rosh Chodesh     |
+  |            | 29-Kislev   | two/one day Rosh Chodesh |
+  |            | 1-Tevet     | two/two day Rosh Chodesh |
+
+  
+Scenario: Next yahrzeit anniversary
+  When yahrzeit day is <yahrzeit>
+  Then the next yahrzeit hebrew anniversary after 1-Jan-2012 should be <hebrew>
+  And the next yahrzeit anniversary after 1-Jan-2012 should be <western>
+  
+  Examples:
+  | yahrzeit    | hebrew           | western     | comment            |
+  | 11-Cheshvan | 11-Cheshvan-5773 | 27-Oct-2012 | regular date       |
+  | 1-Adar I    | 1-Adar I-5772    | 24-Feb-2012 | death in leap year |
+  | 30-Adar I   | 30-Adar I-5772   | 24-Mar-2012 | death in leap year |
+  | 1-Adar II   | 1-Adar I-5772    | 24-Feb-2012 | death in leap year |
+  | 29-Adar II  | 29-Adar I-5772   | 23-Mar-2012 | death in leap year |
+  | 1-Kislev    | 1-Kislev-5773    | 15-Nov-2012 |                    |
+  | 29-Cheshvan | 29-Chesvan-5773  | 14-Nov-2012 |                    |
+  | 1-Tevet     | 1-Tivet-5773     | 14-Dec-2012 |                    |
+  | 29-Kislev   | 29-Kislev-5773   | 13-Dec-2012 |                    |
+  

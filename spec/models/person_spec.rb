@@ -48,33 +48,31 @@ describe Person do
   end
   describe "yahrzeit" do
     # ref: http://www.hebcal.com/converter
-    it "displays" do
+    it "is a hebdate" do
       person = Factory.create(:person, :death_date => "2000/08/17")
-      person.yahrzeit.should == "16 Av"
-    end
-    it "memoizes" do
-      person = Factory.create(:person, :death_date => "2000/08/17")
-      # first call caches the value
-      person.yahrzeit.should == "16 Av"
-      # calling again wont change the return value
-      person.death_date = "2000/08/19"
-      person.yahrzeit.should == "16 Av"
-      person.save
-      # new object has no cache yet
-      p = Person.find person.id
-      p.yahrzeit.should == "18 Av"
+      person.yahrzeit.class.should == Hebruby::HebrewDate
     end
   end
-  describe "yahrzeit_date" do
+  describe "yahrzeit_to_s" do
+    let(:person) { Factory.create(:person, :death_date => "2000/08/17") }
+    
+    it "displays day month year" do
+      person.yahrzeit_to_s.should == "16 Av 5760"
+    end
+    it "displays day month" do
+      person.yahrzeit_to_s(:day_month).should == "16 Av"
+    end
+  end
+  describe "next_yahrzeit_date" do
     it "calculates yahrzeit within the next year" do
       person = Factory.create(:person, :death_date => "2000/08/17")
       Date.stub(:today).and_return(Date.parse("2011/11/6"))
-      person.yahrzeit_date.should == Date.parse("2012/8/4")
+      person.next_yahrzeit_date.should == Date.parse("2012/8/4")
     end
     it "calculates yahrzeit from a date" do
       person = Factory.create(:person, :death_date => "2000/08/17")
       from = Date.parse("2010/11/6")
-      person.yahrzeit_date(from).should == Date.parse("2011/8/16")
+      person.next_yahrzeit_date(from).should == Date.parse("2011/8/16")
     end
   end
 end
