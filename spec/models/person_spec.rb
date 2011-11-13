@@ -38,6 +38,7 @@ describe Person do
       Factory.build(:person, :prefix => nil).should be_valid
     end
   end
+  
   describe "death date" do
     it "cannot be before birth date" do
       person = Factory.build(:person)
@@ -46,21 +47,33 @@ describe Person do
       person.errors[:death_date].should include("can't be before birth date")
     end
   end
-  describe "yahrzeit" do
+  
+  describe "death_hebrew_date" do
+    it "calculates from death_hebrew_date on save" do
+      person = Factory.build(:person, :death_date => "2000/08/17")
+      person.death_hebrew_day.should be_nil
+      person.death_hebrew_month.should be_nil
+      person.death_hebrew_year.should be_nil
+      
+      person.save
+      person.death_hebrew_day.should == 16
+      person.death_hebrew_month.should == 5
+      person.death_hebrew_year.should == 5760
+    end
     # ref: http://www.hebcal.com/converter
     it "is a hebdate" do
       person = Factory.create(:person, :death_date => "2000/08/17")
-      person.yahrzeit.class.should == Hebruby::HebrewDate
+      person.death_hebrew_date.jd.should == Hebruby::HebrewDate.new(16,5,5760).jd
     end
   end
-  describe "yahrzeit_to_s" do
+  describe "death_hebrew_to_s" do
     let(:person) { Factory.create(:person, :death_date => "2000/08/17") }
     
     it "displays day month year" do
-      person.yahrzeit_to_s.should == "16 Av 5760"
+      person.death_hebrew_to_s.should == "16 Av 5760"
     end
     it "displays day month" do
-      person.yahrzeit_to_s(:day_month).should == "16 Av"
+      person.death_hebrew_to_s(:day_month).should == "16 Av"
     end
   end
   describe "next_yahrzeit_date" do

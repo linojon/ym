@@ -32,26 +32,20 @@ class Person < ActiveRecord::Base
   end
   
   before_save :strip_and_capitalize_names
+  before_save :set_death_hebrew_date
   
-  def strip_and_capitalize_names
-    self.last_name.strip! unless last_name.nil?
-    self.first_name.strip! unless first_name.nil?
-    self.middle_name.strip! unless middle_name.nil?
-    self.maiden.strip! unless maiden.nil?
-    
-    self.last_name.capitalize_name! if last_name.present?
-    self.first_name.capitalize_name! if first_name.present?
-    self.middle_name.capitalize_name! if middle_name.present?
-    self.maiden.capitalize_name! if maiden.present?
+  # returns a HebrewDate object
+  def death_hebrew_date
+    #return if death_date.nil?
+    #Hebruby::HebrewDate.new(death_date)
+    unless death_hebrew_day.nil? || death_hebrew_month.nil? || death_hebrew_year.nil?
+      Hebruby::HebrewDate.new(death_hebrew_day, death_hebrew_month, death_hebrew_year)
+    end
   end
   
-  def yahrzeit
-    return unless death_date
-    Person.date_to_yahrzeit(death_date)
-  end
-  
-  def yahrzeit_to_s(format = :day_month_year)
-    if h = yahrzeit
+  # TODO: move .to_s to HebrewDate class
+  def death_hebrew_to_s(format = :day_month_year)
+    if h = death_hebrew_date
       case format
       when :day_month
         "#{h.day} #{h.month_name}"
@@ -66,6 +60,7 @@ class Person < ActiveRecord::Base
   # get next yahrzeit date on or after "from" date
   def next_yahrzeit_date(from=Date.today)
     return unless death_date
+    # TODO: use Marlena rules
     h_from = Hebruby::HebrewDate.new(from)
     h_death = Hebruby::HebrewDate.new(death_date)
     # yahrzeit date from year
@@ -78,9 +73,27 @@ class Person < ActiveRecord::Base
     date
   end
   
-  # REFACTOR: move to Hebcal class
-  def self.date_to_yahrzeit(dod)
-    # TODO: use Marlena rules
-    Hebruby::HebrewDate.new(dod)
+  ### callbacks
+  
+  def strip_and_capitalize_names
+    self.last_name.strip! unless last_name.nil?
+    self.first_name.strip! unless first_name.nil?
+    self.middle_name.strip! unless middle_name.nil?
+    self.maiden.strip! unless maiden.nil?
+    
+    self.last_name.capitalize_name! if last_name.present?
+    self.first_name.capitalize_name! if first_name.present?
+    self.middle_name.capitalize_name! if middle_name.present?
+    self.maiden.capitalize_name! if maiden.present?
   end
+  
+  def set_death_hebrew_date
+    if death_hebrew_date.nil?
+      hebdate = Hebruby::HebrewDate.new(death_date)
+      self.death_hebrew_day = hebdate.day
+      self.death_hebrew_month = hebdate.month
+      self.death_hebrew_year = hebdate.year
+    end
+  end
+  
 end
