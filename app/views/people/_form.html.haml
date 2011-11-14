@@ -4,10 +4,11 @@
   = form.input :middle_name, :label => 'Middle Name', :input_html => {:size => '10'}
   = form.input :last_name, :label => 'Last Name', :input_html => {:size => '20'}
   = form.input :suffix, :label => 'Suffix', :input_html => {:size => '5'}
-  = form.input :maiden, :label => 'Maiden', :input_html => {:size => '5'}
+  = form.input :maiden, :label => 'Maiden', :input_html => {:size => '20'}
   = form.input :gender, :label => 'Gender', :collection => Person::GENDERS, :label_method => :titleize
-  = form.input :birth_date, :start_year => Date.today.year, :end_year => 1800, :include_blank => true
-  = form.input :death_date, :start_year => Date.today.year, :end_year => 1800, :include_blank => true
+  = form.input :birth_date, :start_year => Date.today.year, :end_year => Date.today.year-200, :order => [:day, :month, :year], :include_blank => true
+  = form.input :death_date, :start_year => Date.today.year, :end_year => Date.today.year-200, :order => [:day, :month, :year], :include_blank => true
+  = form.input :death_hebrew_date, :as => :hebrew_date
 
   .actions
     = form.button :submit

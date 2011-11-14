@@ -20,4 +20,12 @@ class Hebruby::HebrewDate
   def <=>(other_date)
     jd <=> other_date.jd if other_date.is_a? Hebruby::HebrewDate
   end
+  
+  def self.today
+    @today ||= Hebruby::HebrewDate.new(Date.today.jd)
+  end
+  
+  def self.months_for_select
+    1.upto(13).map {|i| [Hebruby::HebrewDate::MONTH_NAMES[i], i] }
+  end
 end
