@@ -1,4 +1,6 @@
 class Hebruby::HebrewDate
+  include Comparable
+  
   def to_s(format = :day_month_year)
     case format
     when :day_month
@@ -11,12 +13,7 @@ class Hebruby::HebrewDate
   def ==(other_date)
     jd == other_date.jd if other_date.is_a? Hebruby::HebrewDate
   end
-  def <(other_date)
-    jd < other_date.jd if other_date.is_a? Hebruby::HebrewDate
-  end
-  def >(other_date)
-    jd > other_date.jd if other_date.is_a? Hebruby::HebrewDate
-  end
+
   def <=>(other_date)
     jd <=> other_date.jd if other_date.is_a? Hebruby::HebrewDate
   end

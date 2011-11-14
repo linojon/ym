@@ -65,6 +65,10 @@ describe Person do
       person = Factory.create(:person, :death_date => "2000/08/17")
       person.death_hebrew_date.jd.should == Hebruby::HebrewDate.new(16,5,5760).jd
     end
+    it "can find by hebrew month" do
+      person = Factory.create(:person, :death_date => "2000/08/17")
+      Person.where(:death_hebrew_month => 5).should == [person]
+    end
   end
   describe "death_hebrew_to_s" do
     let(:person) { Factory.create(:person, :death_date => "2000/08/17") }

@@ -28,17 +28,18 @@ describe "People" do
       select('Female', :from => 'Gender')
     end
     
-    it "allows birth year from today back to 1800" do
+    it "allows birth year from today back to 200 years ago" do
       visit '/people/new'
       select_year('Birth date', :with => Time.now.year)
-      select_year('Birth date', :with => 1800)
+      select_year('Birth date', :with => Time.now.year-200)
     end
     
-    it "allows death year back to 1800" do
+    it "allows death year back to 200 years ago" do
       visit '/people/new'
       select_year('Death date', :with => Time.now.year)
-      select_year('Death date', :with => 1800)
+      select_year('Death date', :with => Time.now.year-200)
     end
+    it "allows hebrew death date"
   end
   
   #------------------------
