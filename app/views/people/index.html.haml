@@ -26,7 +26,7 @@
       %td= person.gender
       %td= person.birth_date
       %td= person.death_date
-      %td= person.yahrzeit_to_s(:day_month)
+      %td= person.death_hebrew_date.to_s(:day_month)
       %td= person.next_yahrzeit_date
       %td= link_to 'Show', person
       %td= link_to 'Edit', edit_person_path(person)

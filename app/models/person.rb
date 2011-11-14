@@ -1,7 +1,17 @@
 require Rails.root.join('lib/capitalize_name.rb')
+require Rails.root.join('lib/hebrew_date.rb')
 
 class Person < ActiveRecord::Base
-  extend ActiveSupport::Memoizable
+  #extend ActiveSupport::Memoizable
+  
+  composed_of :death_hebrew_date, 
+              :class_name => 'Hebruby::HebrewDate', 
+              :mapping => 
+              [ # database            # HebrewDate
+                [:death_hebrew_day,   :day], 
+                [:death_hebrew_month, :month], 
+                [:death_hebrew_year,  :year]
+              ]
   
   GENDERS = %w{ male female }
   validates :gender, :inclusion => { :in => GENDERS }, :allow_blank => true
@@ -43,19 +53,19 @@ class Person < ActiveRecord::Base
     end
   end
   
-  # TODO: move .to_s to HebrewDate class
-  def death_hebrew_to_s(format = :day_month_year)
-    if h = death_hebrew_date
-      case format
-      when :day_month
-        "#{h.day} #{h.month_name}"
-      else
-        "#{h.day} #{h.month_name} #{h.year}"
-      end
-    else
-      ''
-    end
-  end
+  # # TODO: move .to_s to HebrewDate class
+  # def death_hebrew_to_s(format = :day_month_year)
+  #   if h = death_hebrew_date
+  #     case format
+  #     when :day_month
+  #       "#{h.day} #{h.month_name}"
+  #     else
+  #       "#{h.day} #{h.month_name} #{h.year}"
+  #     end
+  #   else
+  #     ''
+  #   end
+  # end
   
   # get next yahrzeit date on or after "from" date
   def next_yahrzeit_date(from=Date.today)
@@ -88,12 +98,7 @@ class Person < ActiveRecord::Base
   end
   
   def set_death_hebrew_date
-    if death_hebrew_date.nil?
-      hebdate = Hebruby::HebrewDate.new(death_date)
-      self.death_hebrew_day = hebdate.day
-      self.death_hebrew_month = hebdate.month
-      self.death_hebrew_year = hebdate.year
-    end
+    self.death_hebrew_date = Hebruby::HebrewDate.new(death_date) #if death_hebrew_date.nil?
   end
   
 end

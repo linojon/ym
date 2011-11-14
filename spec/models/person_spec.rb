@@ -70,10 +70,10 @@ describe Person do
     let(:person) { Factory.create(:person, :death_date => "2000/08/17") }
     
     it "displays day month year" do
-      person.death_hebrew_to_s.should == "16 Av 5760"
+      person.death_hebrew_date.to_s.should == "16 Av 5760"
     end
     it "displays day month" do
-      person.death_hebrew_to_s(:day_month).should == "16 Av"
+      person.death_hebrew_date.to_s(:day_month).should == "16 Av"
     end
   end
   describe "next_yahrzeit_date" do
