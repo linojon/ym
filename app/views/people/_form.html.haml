@@ -1,14 +1,19 @@
 = simple_form_for person, :validate => true do |form|
   = form.input :prefix, :label => 'Prefix', :collection => Person::PREFIXES, :label_method => :titleize
-  = form.input :first_name, :label => 'First Name', :input_html => {:size => '20'}
-  = form.input :middle_name, :label => 'Middle Name', :input_html => {:size => '10'}
-  = form.input :last_name, :label => 'Last Name', :input_html => {:size => '20'}
-  = form.input :suffix, :label => 'Suffix', :input_html => {:size => '5'}
-  = form.input :maiden, :label => 'Maiden', :input_html => {:size => '20'}
+  = form.input :first_name, :label => 'First Name', :input_html => {:size => 20}
+  = form.input :middle_name, :label => 'Middle Name', :input_html => {:size => 10}
+  = form.input :last_name, :label => 'Last Name', :input_html => {:size => 20}
+  = form.input :suffix, :label => 'Suffix', :input_html => {:size => 5}
+  = form.input :maiden, :label => 'Maiden', :input_html => {:size => 20}
   = form.input :gender, :label => 'Gender', :collection => Person::GENDERS, :label_method => :titleize
   = form.input :birth_date, :start_year => Date.today.year, :end_year => Date.today.year-200, :order => [:day, :month, :year], :include_blank => true
   = form.input :death_date, :start_year => Date.today.year, :end_year => Date.today.year-200, :order => [:day, :month, :year], :include_blank => true
-  = form.input :death_hebrew_date, :as => :hebrew_date
+  //= form.input :death_hebrew_date, :as => :hebrew_date
+  - start_year = Hebruby::HebrewDate.today.year
+  = form.label :death_hebrew_date
+  = form.select :death_hebrew_day, 1..30, :include_blank => true
+  = form.select :death_hebrew_month, Hebruby::HebrewDate.months_for_select, :include_blank => true
+  = form.select :death_hebrew_year, start_year.downto(start_year-200).map {|i| i}, :include_blank => true
 
   .actions
     = form.button :submit
