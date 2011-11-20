@@ -4,34 +4,16 @@ require Rails.root.join('lib/hebrew_date.rb')
 class Person < ActiveRecord::Base
   #extend ActiveSupport::Memoizable
   
-  # composed_of :death_hebrew_date, 
-  #             :class_name => 'Hebruby::HebrewDate', 
-  #             :mapping => 
-  #             [ # database            # HebrewDate
-  #               [:death_hebrew_day,   :day], 
-  #               [:death_hebrew_month, :month], 
-  #               [:death_hebrew_year,  :year]
-  #             ],
-  #             :allow_nil => true
-  
-  def death_hebrew_date
-    Hebruby::HebrewDate.new( death_hebrew_day, death_hebrew_month, death_hebrew_year) unless death_hebrew_day.nil? || death_hebrew_month.nil? || death_hebrew_year.nil?
-  end
-  
-  def death_hebrew_date=(value)
-    # handle fields_for
-    if value.is_a? Hash
-      self.death_hebrew_day   = value[:day]
-      self.death_hebrew_month = value[:month]
-      self.death_hebrew_year  = value[:year]
-    else
-      self.death_hebrew_day   = value.day
-      self.death_hebrew_month = value.month
-      self.death_hebrew_year  = value.year
-    end
-  end
-  
-  
+  composed_of :death_hebrew_date, 
+              :class_name => 'Hebruby::HebrewDate', 
+              :mapping => 
+              [ # database            # HebrewDate
+                [:death_hebrew_date_day,   :day], 
+                [:death_hebrew_date_month, :month], 
+                [:death_hebrew_date_year,  :year]
+              ],
+             :allow_nil => true
+    
   GENDERS = %w{ male female }
   validates :gender, :inclusion => { :in => GENDERS }, :allow_blank => true
   
@@ -61,7 +43,7 @@ class Person < ActiveRecord::Base
   end
   
   before_save :strip_and_capitalize_names
-  before_save :set_death_hebrew_date
+  before_save :set_death_dates
   
   # get next yahrzeit date on or after "from" date
   def next_yahrzeit_date(from=Date.today)
@@ -93,8 +75,9 @@ class Person < ActiveRecord::Base
     self.maiden.capitalize_name! if maiden.present?
   end
   
-  def set_death_hebrew_date
-    self.death_hebrew_date = Hebruby::HebrewDate.new(death_date) if death_hebrew_date.nil?
+  def set_death_dates
+    self.death_hebrew_date = Hebruby::HebrewDate.new(death_date) if death_hebrew_date.nil? && death_date.present?
+    self.death_date = Date.jd(death_hebrew_date.jd) if death_date.nil? && death_hebrew_date.present?
   end
   
 end

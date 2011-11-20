@@ -18,6 +18,18 @@ class Hebruby::HebrewDate
     jd <=> other_date.jd if other_date.is_a? Hebruby::HebrewDate
   end
   
+  # new object from string "dd month yyyy"
+  def self.parse(hebstr)
+    if hebstr.include? 'Sheni'
+      day, month, sheni, year = hebstr.split(' ')
+      hm = 13
+    else
+      day, month, year = hebstr.split(' ')
+      hm = MONTH_NAMES.find_index {|m| m==month}
+    end
+    self.new( day.to_i, hm, year.to_i)
+  end
+  
   def self.today
     @today ||= Hebruby::HebrewDate.new(Date.today.jd)
   end

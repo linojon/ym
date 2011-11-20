@@ -39,11 +39,17 @@ describe "People" do
       select_year('Death date', :with => Time.now.year)
       select_year('Death date', :with => Time.now.year-200)
     end
-    it "allows hebrew death date"
+    
+    it "allows hebrew death date" do
+      visit '/people/new'
+      select(:person_death_hebrew_date_day, :with => 16)
+      select(:person_death_hebrew_date_month, :with => 'Av')
+      select(:person_death_hebrew_date_year, :with => 5760)
+    end
   end
   
   #------------------------
-  describe "GET /people/create" do
+  describe "PUT /people/create" do
     before :each do
       visit '/people/new'
     end
@@ -158,6 +164,35 @@ describe "People" do
         end 
        end
       
+    end
+
+    describe "death hebrew date" do
+      it "can set from form" do
+        fill_in 'First Name', :with => 'Josh'
+        fill_in 'Last Name', :with => 'Cohen'
+        select '16', :from => 'person_death_hebrew_date_day'
+        select 'Av', :from => 'person_death_hebrew_date_month'
+        select '5760', :from => 'person_death_hebrew_date_year'
+        click_button 'Create Person'
+        page.should have_content("Yahrzeit: 16 Av 5760")
+      end
+    end
+  end
+  
+  #------------------------
+  describe "POST /people/1/update" do
+    let!(:person) { Factory(:person, :death_hebrew_date_day => 16, :death_hebrew_date_month => 'Av', :death_hebrew_date_year => 5760) }
+    before :each do
+      visit '/people/1/edit'
+    end
+    describe "death hebrew date" do
+      it "can set from form" do
+        select '17', :from => 'person_death_hebrew_date_day'
+        select 'Elul', :from => 'person_death_hebrew_date_month'
+        select '5761', :from => 'person_death_hebrew_date_year'
+        click_button 'Update Person'
+        page.should have_content("Yahrzeit: 17 Elul 5761")
+      end
     end
   end
 end

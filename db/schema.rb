@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(:version => 20111113153510) do
     t.date     "death_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "death_hebrew_day"
-    t.integer  "death_hebrew_month"
-    t.integer  "death_hebrew_year"
+    t.integer  "death_hebrew_date_day"
+    t.integer  "death_hebrew_date_month"
+    t.integer  "death_hebrew_date_year"
     t.boolean  "death_after_sunset"
   end
 

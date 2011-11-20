@@ -1,10 +1,8 @@
 class AddYahrzeitToPeople < ActiveRecord::Migration
   def change
-    change_table :people do |t|
-      t.integer :death_hebrew_day
-      t.integer :death_hebrew_month
-      t.integer :death_hebrew_year
-      t.boolean :death_after_sunset
-    end
+    add_column :people, :death_hebrew_date_day, :integer
+    add_column :people, :death_hebrew_date_month, :integer
+    add_column :people, :death_hebrew_date_year, :integer
+    add_column :people, :death_after_sunset, :boolean
   end
 end

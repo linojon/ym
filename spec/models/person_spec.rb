@@ -46,19 +46,25 @@ describe Person do
       person.should_not be_valid
       person.errors[:death_date].should include("can't be before birth date")
     end
+    it "calculates death_hebrew_date on save" do
+      person = Factory.build(:person, :death_date => "2000/08/17")
+      person.death_hebrew_date_day.should be_nil
+      person.death_hebrew_date_month.should be_nil
+      person.death_hebrew_date_year.should be_nil
+      
+      person.save
+      person.death_hebrew_date_day.should == 16
+      person.death_hebrew_date_month.should == 5
+      person.death_hebrew_date_year.should == 5760
+    end
   end
   
   describe "death_hebrew_date" do
-    it "calculates from death_hebrew_date on save" do
-      person = Factory.build(:person, :death_date => "2000/08/17")
-      person.death_hebrew_day.should be_nil
-      person.death_hebrew_month.should be_nil
-      person.death_hebrew_year.should be_nil
-      
+    it "calculates death_date on save" do
+      person = Factory.build(:person, :death_date => nil, :death_hebrew_date_day => 16, :death_hebrew_date_month => 5, :death_hebrew_date_year => 5760)
+      person.death_date.should be_nil
       person.save
-      person.death_hebrew_day.should == 16
-      person.death_hebrew_month.should == 5
-      person.death_hebrew_year.should == 5760
+      person.death_date.should == Date.parse("2000/08/17")
     end
     # ref: http://www.hebcal.com/converter
     it "is a hebdate" do
@@ -67,19 +73,10 @@ describe Person do
     end
     it "can find by hebrew month" do
       person = Factory.create(:person, :death_date => "2000/08/17")
-      Person.where(:death_hebrew_month => 5).should == [person]
+      Person.where(:death_hebrew_date_month => 5).should == [person]
     end
   end
-  describe "death_hebrew_to_s" do
-    let(:person) { Factory.create(:person, :death_date => "2000/08/17") }
-    
-    it "displays day month year" do
-      person.death_hebrew_date.to_s.should == "16 Av 5760"
-    end
-    it "displays day month" do
-      person.death_hebrew_date.to_s(:day_month).should == "16 Av"
-    end
-  end
+  
   describe "next_yahrzeit_date" do
     it "calculates yahrzeit within the next year" do
       person = Factory.create(:person, :death_date => "2000/08/17")
