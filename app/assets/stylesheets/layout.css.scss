@@ -1,95 +1,79 @@
-$primary_color: #4b7399;
+// variables and macros
+//$primary_color: #4b7399;
+//#7CBFB7
 
+// utility styles
+
+// general site layout
 body {
-  background-color: $primary_color;
-  font-family: 'Verdana, Helvetica, Arial';
-  font-size: 14px;
+  background-color: #F1F1F1;
+  //font-family: 'Verdana, Helvetica, Arial';
+  font-family: 'Arial';
 }
 
-a {
-  color: blue;
-  img {
-    border: none;
-	}
-}
-
-table {
-  width: 100%;
-  th, td { text-align: left };
-}
-
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
-}
-
-#header, #footer,
-#container {
-  width: 75%;
-  margin: 0 auto;
+#page {
+  width: 940px;
+  margin: 20px auto;
   background: white;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+  padding: 20px;
 }
+
+#header, #footer, #content {
+}
+
 #header {
-	@include linear-gradient(color-stops(white, black));
-	@include span(5);
-}
-
-#flash_notice,
-#flash_error,
-#flash_alert {
-  padding: 5px 8px;
-  margin: 10px 0;
-}
-
-#flash_notice {
-  background-color: #ccffcc;
-  border: solid 1px #66cc66;
-}
-
-#flash_error,
-#flash_alert {
-  background-color: #ffcccc;
-  border: solid 1px #cc6666;
-}
-
-.error_messages {
-  width: 400px;
-  border: 2px solid #cf0000;
+  height: 131px;
+  background: image-url("bg_header.png") bottom center no-repeat;
   padding: 0;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  font-size: 12px;
-  h2 {
-    text-align: left;
-    padding: 5px 5px 5px 15px;
-    margin: 0;
-    font-weight: bold;
-    font-size: 12px;
-    background-color: #cc0000;
-    color: white;
+  position: relative;
+  #masthead {
+    .logo {
+      float: left;
+      a {
+        width: 372px;
+        height: 131px;
+        display: block;
+        margin-left: 20px;
+        background: image-url("bhc_logo.png") no-repeat;
+        text-indent: -3333px;
+        border: none;
+        text-decoration: none;
+        position: absolute;
+      }
+    }
+    h1 {
+      font-size: 300%;
+      margin: 0;
+      padding: 50px 0 0 500px;
+    }
   }
-  p {
-    margin: 8px 10px;
-  }
-  ul {
-    margin: 0;
+  #navbar {
+    $navbar_height: 38px;
+    @include inline-block-list(10px);
+    float: left;
+    display: block;
+    margin: 18px 0 0 0;
+    width: 940px;
+    height: $navbar_height;
+    background: #7CBFB7;
+    ul { 
+      margin: 0; 
+      text-align: center;
+    }
+    a {
+      display: block;
+      line-height: $navbar_height;
+      margin-right: 10px;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      &:hover { color: white; }
+    }
   }
 }
 
-.field_with_errors {
-  display: inline;
+#content {
+  padding: 20px 0;
 }
 
-form .field,
-form .actions {
-  margin: 10px 0;
-}
-
-form label {
-  display: block;
-}
+// page specific
