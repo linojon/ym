@@ -4,6 +4,10 @@ require Rails.root.join('lib/hebrew_date.rb')
 class Person < ActiveRecord::Base
   #extend ActiveSupport::Memoizable
   
+  def full_name
+    [ prefix, first_name, middle_name, last_name, suffix ].join(' ')
+  end
+  
   composed_of :death_hebrew_date, 
               :class_name => 'Hebruby::HebrewDate', 
               :mapping => 
