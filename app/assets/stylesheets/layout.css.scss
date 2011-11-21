@@ -1,8 +1,15 @@
 // variables and macros
-//$primary_color: #4b7399;
-//#7CBFB7
+
+$accent_color: #7CBFB7;
+
 
 // utility styles
+
+table {
+  width: 100%;
+  th, td { text-align: left };
+}
+
 
 // general site layout
 body {
@@ -55,7 +62,7 @@ body {
     margin: 18px 0 0 0;
     width: 940px;
     height: $navbar_height;
-    background: #7CBFB7;
+    background: $accent_color;
     ul { 
       margin: 0; 
       text-align: center;
@@ -74,6 +81,11 @@ body {
 
 #content {
   padding: 20px 0;
+}
+
+#footer {
+  border-top: 4px solid $accent_color;
+  padding: 18px 0;
 }
 
 // page specific
