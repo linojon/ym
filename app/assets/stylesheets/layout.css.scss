@@ -88,6 +88,26 @@ body {
   padding: 18px 0;
 }
 
+#flash_notice,
+#flash_error,
+#flash_alert {
+  padding: 5px 8px;
+  margin: 30px 0 10px;
+}
+
+#flash_notice {
+  background-color: #ccffcc;
+  border: solid 1px #66cc66;
+}
+
+#flash_error,
+#flash_alert {
+  background-color: #ffcccc;
+  border: solid 1px #cc6666;
+}
+
+
+
 .show_data {
   $label_width: 150px;
   p {

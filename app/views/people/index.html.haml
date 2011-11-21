@@ -10,8 +10,6 @@
     %th Yahrzeit
     %th Next yahrzeit
     %th
-    %th
-    %th
 
   - people.each do |person|
     %tr
@@ -25,9 +23,12 @@
       %td= rdate person.death_date
       %td= person.death_hebrew_date.to_s(:day_month) if person.death_hebrew_date
       %td= rdate person.next_yahrzeit_date
-      %td= link_to 'Show', person
-      %td= link_to 'Edit', edit_person_path(person)
-      %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
+      %td
+        = link_to 'Show', person
+        &nbsp;
+        = link_to 'Edit', edit_person_path(person)
+        &nbsp;
+        = link_to 'Delete', person, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

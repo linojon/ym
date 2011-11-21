@@ -28,15 +28,12 @@ label.collection_radio {
 }
 
 .field_with_errors {
-  background-color: #ff3333;
+  background-color: #fee;
 }
 
 .simple_form .error {
-  clear:   left;
-  color:   black;
-  display: block;
-  margin-left: $label_width + 20px;
-  font-size:    12px;
+  color:   red;
+  margin-left: 1em;
 }
 
 .simple_form .hint {
