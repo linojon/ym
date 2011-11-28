@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
   respond_to :html, :json
   
-  expose(:people) { Person.all }
+  expose(:people) { Person.paginate( :page => (params[:page] || 1), :per_page => 10 ) }
   expose(:person)
   
   def index

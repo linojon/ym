@@ -80,8 +80,16 @@ class Person < ActiveRecord::Base
   end
   
   def set_death_dates
-    self.death_hebrew_date = Hebruby::HebrewDate.new(death_date) if death_hebrew_date.nil? && death_date.present?
-    self.death_date = Date.jd(death_hebrew_date.jd) if death_date.nil? && death_hebrew_date.present?
+    if death_hebrew_date.nil? && death_date.present?
+      date = death_date
+      date += 1.day if death_after_sunset
+      self.death_hebrew_date = Hebruby::HebrewDate.new(date) 
+    end
+    if death_date.nil? && death_hebrew_date.present?
+      jd =  death_hebrew_date.jd
+      jd -= 1 if death_after_sunset
+      self.death_date = Date.jd(jd) 
+    end
   end
   
 end

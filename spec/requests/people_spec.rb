@@ -11,6 +11,20 @@ describe "People" do
       page.should have_content(person1.last_name)
       page.should have_content(person2.last_name)
     end
+    describe "paginate" do
+      before :each do
+        15.times { Factory(:person) }
+      end
+      it "10 items per page" do
+        visit '/people'
+        page.should have_selector('table#people tbody tr', :count => 10)
+      end
+      it "less items on last page" do
+        visit '/people?page=2'
+        page.should have_selector("table#people tbody tr", :count => 7)
+      end
+      
+    end
   end
   
   #------------------------

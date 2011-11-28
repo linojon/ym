@@ -57,14 +57,27 @@ describe Person do
       person.death_hebrew_date_month.should == 5
       person.death_hebrew_date_year.should == 5760
     end
+    it "calculates death_hebrew_date as next day if after sunset" do
+      person = Factory.build(:person, :death_date => "2000/08/17", :death_after_sunset => true )
+      person.save
+      person.death_hebrew_date_day.should == 17
+      person.death_hebrew_date_month.should == 5
+      person.death_hebrew_date_year.should == 5760
+      
+    end
   end
   
   describe "death_hebrew_date" do
-    it "calculates death_date on save" do
+    it "calculates western death_date on save" do
       person = Factory.build(:person, :death_date => nil, :death_hebrew_date_day => 16, :death_hebrew_date_month => 5, :death_hebrew_date_year => 5760)
       person.death_date.should be_nil
       person.save
       person.death_date.should == Date.parse("2000/08/17")
+    end
+    it "calculates western death_date as day before if after sunset" do
+      person = Factory.build(:person, :death_date => nil, :death_hebrew_date_day => 16, :death_hebrew_date_month => 5, :death_hebrew_date_year => 5760, :death_after_sunset => true)
+      person.save
+      person.death_date.should == Date.parse("2000/08/16")
     end
     # ref: http://www.hebcal.com/converter
     it "is a hebdate" do

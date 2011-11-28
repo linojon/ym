@@ -1,35 +1,41 @@
 - title 'Listing people'
 
-%table
-  %tr
-    %th Name 
-    %th 
-    %th Gender
-    %th Birth date
-    %th Death date
-    %th Yahrzeit
-    %th Next yahrzeit
-    %th
-
-  - people.each do |person|
+%table#people
+  %thead
     %tr
-      %td= person.last_name
-      %td
-        = person.first_name
-        = person.middle_name[0]
-        = ', ' + person.suffix if person.suffix.present?
-      %td= person.gender.upcase[0] if person.gender
-      %td= rdate person.birth_date
-      %td= rdate person.death_date
-      %td= person.death_hebrew_date.to_s(:day_month) if person.death_hebrew_date
-      %td= rdate person.next_yahrzeit_date
-      %td
-        = link_to 'Show', person
-        &nbsp;
-        = link_to 'Edit', edit_person_path(person)
-        &nbsp;
-        = link_to 'Delete', person, :confirm => 'Are you sure?', :method => :delete
+      %th Name 
+      %th 
+      %th Gender
+      %th Birth date
+      %th Death date
+      %th Yahrzeit
+      %th Next yahrzeit
+      %th
+
+  %tbody
+    - people.each do |person|
+      %tr
+        %td= person.last_name
+        %td
+          = person.first_name
+          = person.middle_name[0]
+          = ', ' + person.suffix if person.suffix.present?
+        %td= person.gender.upcase[0] if person.gender
+        %td= rdate person.birth_date
+        %td= rdate person.death_date
+        %td= person.death_hebrew_date.to_s(:day_month) if person.death_hebrew_date
+        %td= rdate person.next_yahrzeit_date
+        %td
+          = link_to 'Show', person
+          &nbsp;
+          = link_to 'Edit', edit_person_path(person)
+          &nbsp;
+          = link_to 'Delete', person, :confirm => 'Are you sure?', :method => :delete
+
+.digg_pagination
+  .page_info
+    = page_entries_info people
+  = will_paginate people, :container => false
 
 %br
-
 = link_to 'New Person', new_person_path
