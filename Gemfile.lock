@@ -118,6 +118,10 @@ GEM
       thor (~> 0.14)
     json (1.6.1)
     json_pure (1.6.1)
+    jsonify (0.2.0)
+    jsonify-rails (0.2.0)
+      actionpack
+      jsonify (>= 0.2.0)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     linecache19 (0.5.12)
@@ -126,12 +130,19 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_search (1.1.1)
+      actionpack (~> 3.1.0)
+      activerecord (~> 3.1.0)
+      activesupport (~> 3.1.0)
+      polyamorous (~> 0.5.0)
     method_source (0.6.6)
       ruby_parser (~> 2.0.5)
     mime-types (1.16)
     multi_json (1.0.3)
     nokogiri (1.5.0)
     pg (0.11.0)
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.2)
     pry (0.9.6.2)
       coderay (~> 0.9.8)
@@ -210,6 +221,10 @@ GEM
       json_pure
       rubyzip
     sexp_processor (3.0.7)
+    simple_datatables (0.2.0)
+      jsonify-rails
+      meta_search (~> 1.1.0)
+      rails (~> 3.1.0)
     simple_form (1.5.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -269,6 +284,7 @@ DEPENDENCIES
   rspec-rails
   ruby-debug19
   sass-rails (~> 3.1.0)
+  simple_datatables
   simple_form
   sqlite3
   therubyracer-heroku

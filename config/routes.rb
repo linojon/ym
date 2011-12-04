@@ -1,6 +1,8 @@
 Ym::Application.routes.draw do
   
-  resources :people
+  resources :people do
+    get 'search', :on => :collection
+  end
 
   match 'about' => 'pages#about'
 

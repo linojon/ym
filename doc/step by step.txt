@@ -253,6 +253,29 @@ will_paginate
 > require './spec/support/random_date.rb'
 
 ## ---------------
+## 12/3/2011
+
+datatables
+  https://github.com/DataTables
+  http://datatables.net
+  https://github.com/gryphon/simple_datatables
+  
+  http://datatables.net/download/
+    into assets/javascripts/
+    
+  Gemfile
+    gem 'simple_datatables'
+  assets/javascripts/application.js
+    //= require simple_datatables
+    
+
+## ---------------
+##
+## ---------------
+##
+## ---------------
+##
+## ---------------
 ##
 ## ---------------
 ##

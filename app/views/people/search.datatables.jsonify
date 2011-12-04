@@ -1,0 +1,12 @@
+people.each do |person|
+  json << [
+    person.last_name, 
+    person.first_name, 
+    person.middle_name[0], 
+    (person.gender && person.gender.upcase[0]), 
+    rdate(person.birth_date), 
+    rdate(person.death_date), 
+    (person.death_hebrew_date && person.death_hebrew_date.to_s(:day_month)),
+    rdate(person.next_yahrzeit_date)
+  ]
+end
