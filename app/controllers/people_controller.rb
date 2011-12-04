@@ -9,7 +9,9 @@ class PeopleController < ApplicationController
     respond_with people
   end
   def search
-    respond_with people, :locals => {:collection => people}
+    #respond_with people, :locals => {:collection => people}
+    @people = Person.search(params[:search]).paginate(:page => params[:page], :per_page=>params[:per_page])
+    respond_with @people, :locals => { :collection => @people }
   end
 
   def show
