@@ -12,6 +12,7 @@ $(document).ready(function() {
       {"sName":"Hebrew"},
       {"sName":"Yahrzeit"},
     ],
+    "bJQueryUI"       : true,
     "bServerSide"     : true,
     "fnServerData"    : simpleDatatables
   });

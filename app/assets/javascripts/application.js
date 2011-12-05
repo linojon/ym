@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require rails.validations
-//= require_tree .
 //= require simple_datatables
+//= require_tree .
