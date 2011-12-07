@@ -8,5 +8,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require rails.validations
+//= require datatables.custom
 //= require simple_datatables
 //= require_tree .
