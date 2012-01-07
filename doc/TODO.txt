@@ -1,0 +1,5 @@
+sort yahrzeit column
+filter
+"Showing 1 to 10 of 18 entries (filtered from 10 total entries)" ??
+hebrew date sort (use a hidden jd column)
+
