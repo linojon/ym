@@ -1,7 +1,11 @@
 $(document).ready(function() {
   $("table#people").dataTable({
     "sAjaxSource"     : "/people/search.datatables",
-    "aaSorting"       : [[0, 'asc']],
+    "bServerSide"     : true,
+    "fnServerData"    : simpleDatatables,
+    
+    "bJQueryUI"       : true,
+    
     "aoColumns"       : [
       {"sName":"last_name"},
       {"sName":"first_name", "bSortable": false},
@@ -12,8 +16,11 @@ $(document).ready(function() {
       {"sName":"death_hebrew_date"},
       {"sName":"next_yahrzeit_date", "sType": "shortdate"},
     ],
-    "bJQueryUI"       : true,
-    "bServerSide"     : true,
-    "fnServerData"    : simpleDatatables
+    
+    "aaSorting"       : [[0, 'asc']],
+        
+    "bScrollInfinite" : true,
+    "bScrollCollapse" : true,
+    "sScrollY"        : "200px"
   });
 });

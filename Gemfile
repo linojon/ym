@@ -13,7 +13,7 @@ gem 'client_side_validations'
 gem 'decent_exposure'
 gem 'hebruby'
 gem 'will_paginate'
-gem 'simple_datatables' # with meta_search, jsonify,
+gem 'simple_datatables' # with meta_search, jsonify, https://github.com/gryphon/simple_datatables
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -2,7 +2,8 @@ class PeopleController < ApplicationController
   respond_to :html, :json, :datatables
   
   #expose(:people) { Person.paginate( :page => (params[:page] || 1), :per_page => 10 ) }
-  expose(:people) { Person.search(params[:search]).paginate(:page => (params[:page] || 1), :per_page=>params[:per_page]) }
+  # expose(:people) { Person.search(params[:search]).paginate(:page => (params[:page] || 1), :per_page=>params[:per_page]) }
+  expose(:people) { Person.search(params[:search]).relation }
   expose(:person)
   
   def index
@@ -10,7 +11,8 @@ class PeopleController < ApplicationController
   end
   def search
     #respond_with people, :locals => {:collection => people}
-    @people = Person.search(params[:search]).paginate(:page => params[:page], :per_page=>params[:per_page])
+    # @people = Person.search(params[:search]).paginate(:page => params[:page], :per_page => params[:per_page]).relation
+    @people = Person.search(params[:search]).relation
     respond_with @people, :locals => { :collection => @people }
   end
 
