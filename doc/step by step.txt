@@ -155,6 +155,11 @@ $ heroku apps:rename yminder
 $ heroku open
 http://yminder.heroku.com
 
+SUMMARY - to redeploy
+$ rake assets:precompile
+$ git push heroku 
+$ heroku rake db:migrate
+$ heroku open
 
 ## ---------------
 ## compass
@@ -252,49 +257,6 @@ will_paginate
 
 > require './spec/support/random_date.rb'
 
-## ---------------
-## 12/3/2011
-
-datatables
-  https://github.com/DataTables
-  http://datatables.net
-  https://github.com/gryphon/simple_datatables
-  
-  http://datatables.net/download/
-    into assets/javascripts/
-    
-  Gemfile
-    gem 'simple_datatables'
-  assets/javascripts/application.js
-    //= require simple_datatables
-    
-
-## ---------------
-## 12/4/2011
-
-  http://stackoverflow.com/questions/6048490/rails-3-1-and-jquery-ui-images
-  TODO: NEEDS RAILS TO IMPLEMENT A BETTER METHOD
-  
-  app/assets/javascripts/application.js
-    //= require jquery-ui
-    
-  download themeroller theme (redmond) move it into 
-    vendor/assets/stylesheets/jquery-ui/redmond/
-  rename css files as .css.scss
-  
-  symlink images to
-    vendor/assets/images/images
-    
-  app/assets/stylesheets/jquery-ui/redmond/application.css.scss
-    @import 'redmond/jquery-ui-1.8.16.custom.css.scss'
-
-  
-      
-
-## ---------------
-##
-## ---------------
-##
 ## ---------------
 ##
 ## ---------------
