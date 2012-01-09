@@ -1,13 +1,16 @@
 $(document).ready(function() {
   $("table#people").dataTable({
+    // for datatables gem
     "sAjaxSource"     : "/people/search.datatables",
     "bServerSide"     : true,
     "fnServerData"    : simpleDatatables,
     
+    // for jquery ui
     "bJQueryUI"       : true,
     
+    // for table specific columns behaviior
     "aoColumns"       : [
-      {"sName":"last_name", "bSearchable": true},
+      {"sName":"last_name"},
       {"sName":"first_name", "bSortable": false},
       {"sName":"middle_name", "bSortable": false},
       {"sName":"gender", "bSortable": false, "bSearchable": false},
@@ -19,6 +22,7 @@ $(document).ready(function() {
     
     "aaSorting"       : [[0, 'asc']],
         
+    // for infinite scroll
     //"bScrollInfinite" : true,
     //"bScrollCollapse" : true,
     //"sScrollY"        : "200px",
