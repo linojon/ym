@@ -37,11 +37,16 @@ label.collection_radio {
 }
 
 .simple_form .hint {
-  clear: left;
+/*  clear: left;
   margin-left: $label_width + 20px;
   font-size:    12px;
   color: #555;
   display: block;
+  font-style: italic;
+*/
+  margin-left: 1em;
+  font-size:    12px;
+  color: #555;
   font-style: italic;
 }
 

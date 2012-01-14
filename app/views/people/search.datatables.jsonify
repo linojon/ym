@@ -7,6 +7,11 @@ people.each do |person|
     rdate(person.birth_date), 
     rdate(person.death_date), 
     (person.death_hebrew_date && person.death_hebrew_date.to_s(:day_month)),
-    rdate(person.next_yahrzeit_date)
+    rdate(person.next_yahrzeit_date),
+    [
+      link_to("Show", person),
+      link_to("Edit", edit_person_path(person)),
+      link_to("Delete", person, :confirm => 'Are you sure?', :method => :delete),
+    ].join('&nbsp;')
   ]
 end

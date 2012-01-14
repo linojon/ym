@@ -8,7 +8,9 @@
   = form.input :gender, :label => 'Gender', :collection => Person::GENDERS, :label_method => :titleize
   = form.input :birth_date, :start_year => Date.today.year, :end_year => Date.today.year-200, :order => [:day, :month, :year], :include_blank => true
   = form.input :death_date, :start_year => Date.today.year, :end_year => Date.today.year-200, :order => [:day, :month, :year], :include_blank => true
-  = form.input :death_hebrew_date, :as => :hebrew_date
+  = form.input :death_hebrew_date, :as => :hebrew_date, :hint => "#{'(will be calculated from Death Date if left blank)' unless person.death_hebrew_date.present?}"
 
   .actions
     = form.button :submit
+%p.italic
+  * = Required

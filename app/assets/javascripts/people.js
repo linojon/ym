@@ -18,6 +18,7 @@ $(document).ready(function() {
       {"sName":"death_date", "sType": "shortdate", "bSearchable": false},
       {"sName":"death_hebrew_date", "bSearchable": false},
       {"sName":"next_yahrzeit_date", "sType": "shortdate", "bSearchable": false},
+      {"sName":"", "bSearchable": false, "bSortable": false},
     ],
     
     "aaSorting"       : [[0, 'asc']],
