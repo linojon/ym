@@ -28,6 +28,6 @@ $(document).ready(function() {
     //"bScrollCollapse" : true,
     //"sScrollY"        : "200px",
     
-    //"iDisplayLength"  : 300
+    "iDisplayLength"  : 100
   });
 });
